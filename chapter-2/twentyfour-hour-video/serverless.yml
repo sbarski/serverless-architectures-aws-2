@@ -1,0 +1,33 @@
+###
+### Created by Peter Sbarski (@sbarski)
+### Serverless Architectures on AWS (2nd Edition)
+### https://www.manning.com/books/serverless-architectures-on-aws-second-edition
+### Last Updated: Jun 14, 2021
+###
+
+service: twentyfour-hour-video-ps                          
+
+provider:
+  name: aws                                       
+  runtime: nodejs14.x                               
+  region: us-east-1                                 
+
+custom:
+  upload-bucket: upload-video-bucket #change this to a different bucket name that is not in use                  
+  transcode-bucket: transcoded-video-bucket #change this to the bucket name you have already created      
+  transcode-video-role: arn:aws:iam::038221756127:role/transcode-video #change this to your Lambda role
+  media-endpoint: https://lxlxpswfb.mediaconvert.us-east-1.amazonaws.com #change this to your endpoint
+  media-role: arn:aws:iam::038221756127:role/media-convert-role #change this to your media endpoint    
+
+functions:
+  transcode-video:                                    
+    handler: transcode-video/index.handler
+    role: ${self:custom.transcode-video-role}              
+    package:                                      
+      individually: true
+    environment:
+      MEDIA_ENDPOINT: ${self:custom.media-endpoint}      
+      MEDIA_ROLE: ${self:custom.media-role}  
+      TRANSCODED_VIDEO_BUCKET: ${self:custom.transcode-bucket}
+    events:
+      - s3: ${self:custom.upload-bucket}
