@@ -1,5 +1,7 @@
 # Serverless Architectures on AWS (2nd Edition)
-Serverless Architectures (2nd Edition) :: Manning
+Serverless Architectures (2nd Edition) :: Manning Publications
+
+
 https://www.manning.com/books/serverless-architectures-on-aws-second-edition
 
 ## Contents
