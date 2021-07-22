@@ -17,7 +17,7 @@ custom:
   transcode-bucket: transcoded-video-bucket #change this to the bucket name you have already created      
   transcode-video-role: arn:aws:iam::038221756127:role/transcode-video #change this to your Lambda role
   media-endpoint: https://lxlxpswfb.mediaconvert.us-east-1.amazonaws.com #change this to your endpoint
-  media-role: arn:aws:iam::038221756127:role/media-convert-role #change this to your media endpoint    
+  media-role: arn:aws:iam::038221756127:role/media-convert-role #change this to the role for your converter    
 
 functions:
   transcode-video:                                    
